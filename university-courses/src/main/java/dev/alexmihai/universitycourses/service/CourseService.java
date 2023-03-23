@@ -1,11 +1,19 @@
 package dev.alexmihai.universitycourses.service;
 
+import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
+import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
+import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
+import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.model.Course;
+import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.repository.CourseRepository;
+import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -26,12 +34,39 @@ public class CourseService {
         return repository.saveAll(courses);
     }
 
-    public List<Course> getCourses() {
-        return repository.findAll();
+    public List<CourseGetAllDto> getCourses() {
+        List<Course> courses = repository.findAll();
+        List<CourseGetAllDto> coursesDto = new ArrayList<>();
+        for (Course course : courses) {
+            CourseGetAllDto courseDto = new CourseGetAllDto(
+                    course.getId(),
+                    course.getNumberOfCredits(),
+                    course.getTitle(),
+                    course.getDescription(),
+                    course.getStartDate(),
+                    course.getEndDate(),
+                    course.getProfessor().getId()
+            );
+            coursesDto.add(courseDto);
+        }
+        return coursesDto;
     }
 
-    public Course getCourseById(int id) {
-        return repository.findById(id).orElse(null);
+    public CourseGetByIdDto getCourseById(int id) {
+        Course course = repository.findById(id).orElse(null);
+        if (course == null) {
+            return null;
+        }
+        return new CourseGetByIdDto(
+                course.getId(),
+                course.getNumberOfCredits(),
+                course.getTitle(),
+                course.getDescription(),
+                course.getStartDate(),
+                course.getEndDate(),
+                ObjectMapperUtils.map(course.getProfessor(), ProfessorGetAllDto.class),
+                course.getCourseStudents()
+        );
     }
 
     public String deleteCourse(int id) {
@@ -52,5 +87,10 @@ public class CourseService {
         existingCourse.setEndDate(course.getEndDate());
         existingCourse.setProfessor(course.getProfessor());
         return repository.save(existingCourse);
+    }
+
+    public List<AverageSalaryProfessorCoursesDto> getCoursesOrderedByAverageSalary() {
+        List<AverageSalaryProfessorCoursesDto> courses = repository.findCoursesOrderByAverageSalary();
+        return courses;
     }
 }

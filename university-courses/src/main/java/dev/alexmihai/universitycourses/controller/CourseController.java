@@ -1,5 +1,8 @@
 package dev.alexmihai.universitycourses.controller;
 
+import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
+import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
+import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.model.Course;
 import dev.alexmihai.universitycourses.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,43 +12,49 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/university")
+@RequestMapping("/courses")
 public class CourseController {
     @Autowired
     private CourseService service;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/add/course")
+    @PostMapping
     // The @RequestBody annotation is used to get the JSON data from the request body
     public Course addCourse(@RequestBody Course course) {
         return service.saveCourse(course);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/add/courses")
+    @PostMapping("/batch")
     // The @RequestBody annotation is used to get the JSON data from the request body
     public List<Course> addCourses(@RequestBody List<Course> courses) {
         return service.saveCourses(courses);
     }
 
-    @GetMapping("/get/courses")
-    public List<Course> findAllCourses() {
+    @GetMapping
+    public List<CourseGetAllDto> findAllCourses() {
         return service.getCourses();
     }
 
-    @GetMapping("/get/course/{id}")
+    @GetMapping("/{id}")
     // The @PathVariable annotation is used to get the id from the URL
-    public Course findCourseById(@PathVariable int id) {
+    public CourseGetByIdDto findCourseById(@PathVariable int id) {
         return service.getCourseById(id);
     }
 
-    @PutMapping("/update/course")
+    @PutMapping("/update")
     public Course updateCourse(@RequestBody Course course) {
         return service.updateCourse(course);
     }
 
-    @DeleteMapping("/delete/course/{id}")
+    @DeleteMapping("delete/{id}")
     public String deleteCourse(@PathVariable int id) {
         return service.deleteCourse(id);
+    }
+
+    // statistics: show all courses ordered by the average salary of their professor
+    @GetMapping("/statistics")
+    public List<AverageSalaryProfessorCoursesDto> getCoursesOrderedByAverageSalary() {
+        return service.getCoursesOrderedByAverageSalary();
     }
 }

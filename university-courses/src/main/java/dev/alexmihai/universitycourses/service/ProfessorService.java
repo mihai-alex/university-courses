@@ -1,7 +1,12 @@
 package dev.alexmihai.universitycourses.service;
 
+import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
+import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
+import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
 import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.repository.ProfessorRepository;
+import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +31,9 @@ public class ProfessorService {
         return repository.saveAll(professors);
     }
 
-    public List<Professor> getProfessors() {
-        return repository.findAll();
+    public List<ProfessorGetAllDto> getProfessors() {
+        List<Professor> professors = repository.findAll();
+        return ObjectMapperUtils.mapAll(professors, ProfessorGetAllDto.class);
     }
 
     public Professor getProfessorById(int id) {
@@ -35,8 +41,9 @@ public class ProfessorService {
     }
 
     // This method is used to get all the professors with a salary greater than the given salary
-    public List<Professor> findBySalaryGreaterThan(int salary) {
-        return repository.findBySalaryGreaterThan(salary);
+    public List<ProfessorGetAllDto> findBySalaryGreaterThan(int salary) {
+        List<Professor> professors = repository.findBySalaryGreaterThan(salary);
+        return ObjectMapperUtils.mapAll(professors, ProfessorGetAllDto.class);
     }
 
     public String deleteProfessor(int id) {
@@ -56,5 +63,10 @@ public class ProfessorService {
         existingProfessor.setPhone(professor.getPhone());
         existingProfessor.setSalary(professor.getSalary());
         return repository.save(existingProfessor);
+    }
+
+    public List<ProfessorsByNumStudentsDto> getProfessorsByNumStudents() {
+        List<ProfessorsByNumStudentsDto> professors = repository.findProfessorsByNumStudents();
+        return professors;
     }
 }

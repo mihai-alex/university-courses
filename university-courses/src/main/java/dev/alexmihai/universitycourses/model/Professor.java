@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
 // JPA annotations
 @Entity
 @Table(name = "Professors")
-public class Professor {
+public class Professor implements Serializable {
     @Id
     @GeneratedValue
     private int id;

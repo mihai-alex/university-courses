@@ -1,14 +1,17 @@
 package dev.alexmihai.universitycourses.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 // Lombok annotations
 @Data
@@ -19,7 +22,7 @@ import java.time.LocalDate;
 // JPA annotations
 @Entity
 @Table(name = "Courses")
-public class Course {
+public class Course implements Serializable {
     @Id  // primary key
     @GeneratedValue
     private int id;
@@ -34,4 +37,8 @@ public class Course {
     @JoinColumn(name = "professor_id")
     @JsonBackReference  // to avoid infinite recursion!!! (see Professor.java)
     private Professor professor;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<StudentCourse> courseStudents = new ArrayList<>();  // many-to-many relationship
 }
