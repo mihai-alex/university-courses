@@ -1,6 +1,6 @@
 package dev.alexmihai.universitycourses.controller;
 
-import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
+import dev.alexmihai.universitycourses.dto.CourseByAvgProfSalaryDto;
 import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.model.Course;
@@ -54,7 +54,7 @@ public class CourseController {
 
     // statistics: show all courses ordered by the average salary of their professor
     @GetMapping("/stats-courses-by-avg-prof-salary-desc")
-    public List<AverageSalaryProfessorCoursesDto> getCoursesByAvgProfSalaryDesc() {
+    public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
         return service.getCoursesByAvgProfSalaryDesc();
     }
 }

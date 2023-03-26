@@ -9,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProfessorsByNumStudentsDto {
+public class ProfessorByNumStudsDto {
     private int id;
     private String profFirstName;
     private String profLastName;

@@ -1,7 +1,7 @@
 package dev.alexmihai.universitycourses.service;
 
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
-import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
+import dev.alexmihai.universitycourses.dto.ProfessorByNumStudsDto;
 import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.repository.ProfessorRepository;
 import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
@@ -63,8 +63,8 @@ public class ProfessorService {
         return repository.save(existingProfessor);
     }
 
-    public List<ProfessorsByNumStudentsDto> getProfsByNumStudsDesc() {
-        List<ProfessorsByNumStudentsDto> professors = repository.findProfsByNumStudsDesc();
+    public List<ProfessorByNumStudsDto> getProfsByNumStudsDesc() {
+        List<ProfessorByNumStudsDto> professors = repository.findProfsByNumStudsDesc();
         return professors;
     }
 }

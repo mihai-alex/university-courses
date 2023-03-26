@@ -1,7 +1,7 @@
 package dev.alexmihai.universitycourses.controller;
 
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
-import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
+import dev.alexmihai.universitycourses.dto.ProfessorByNumStudsDto;
 import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +58,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/stats-profs-by-num-studs-desc")
-    public List<ProfessorsByNumStudentsDto> getProfsByNumStudsDesc() {
+    public List<ProfessorByNumStudsDto> getProfsByNumStudsDesc() {
         return service.getProfsByNumStudsDesc();
     }
 }

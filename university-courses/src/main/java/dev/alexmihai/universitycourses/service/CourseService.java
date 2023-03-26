@@ -1,6 +1,6 @@
 package dev.alexmihai.universitycourses.service;
 
-import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
+import dev.alexmihai.universitycourses.dto.CourseByAvgProfSalaryDto;
 import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
@@ -87,8 +87,8 @@ public class CourseService {
         return repository.save(existingCourse);
     }
 
-    public List<AverageSalaryProfessorCoursesDto> getCoursesByAvgProfSalaryDesc() {
-        List<AverageSalaryProfessorCoursesDto> courses = repository.findCoursesByAvgProfSalaryDesc();
+    public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
+        List<CourseByAvgProfSalaryDto> courses = repository.findCoursesByAvgProfSalaryDesc();
         return courses;
     }
 }
