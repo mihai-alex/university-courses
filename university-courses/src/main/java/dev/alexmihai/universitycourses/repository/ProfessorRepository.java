@@ -1,6 +1,5 @@
 package dev.alexmihai.universitycourses.repository;
 
-import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
 import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
 import dev.alexmihai.universitycourses.model.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,5 +29,5 @@ public interface ProfessorRepository extends JpaRepository<Professor, Integer> {
             "JOIN c.courseStudents s " +
             "GROUP BY p.id " +
             "ORDER BY COUNT(s) DESC")
-    List<ProfessorsByNumStudentsDto> findProfessorsByNumStudents();
+    List<ProfessorsByNumStudentsDto> findProfsByNumStudsDesc();
 }

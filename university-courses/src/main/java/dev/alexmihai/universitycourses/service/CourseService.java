@@ -5,7 +5,6 @@ import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.model.Course;
-import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.repository.CourseRepository;
 import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -89,8 +87,8 @@ public class CourseService {
         return repository.save(existingCourse);
     }
 
-    public List<AverageSalaryProfessorCoursesDto> getCoursesOrderedByAverageSalary() {
-        List<AverageSalaryProfessorCoursesDto> courses = repository.findCoursesOrderByAverageSalary();
+    public List<AverageSalaryProfessorCoursesDto> getCoursesByAvgProfSalaryDesc() {
+        List<AverageSalaryProfessorCoursesDto> courses = repository.findCoursesByAvgProfSalaryDesc();
         return courses;
     }
 }

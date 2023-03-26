@@ -1,6 +1,5 @@
 package dev.alexmihai.universitycourses.controller;
 
-import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
 import dev.alexmihai.universitycourses.model.Professor;
@@ -58,8 +57,8 @@ public class ProfessorController {
         return service.deleteProfessor(id);
     }
 
-    @GetMapping("/stats-studs-per-prof")
-    public List<ProfessorsByNumStudentsDto> getProfessorsByNumStudentsDto() {
-        return service.getProfessorsByNumStudents();
+    @GetMapping("/stats-profs-by-num-studs-desc")
+    public List<ProfessorsByNumStudentsDto> getProfsByNumStudsDesc() {
+        return service.getProfsByNumStudsDesc();
     }
 }

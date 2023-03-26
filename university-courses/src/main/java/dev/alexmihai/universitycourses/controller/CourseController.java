@@ -53,8 +53,8 @@ public class CourseController {
     }
 
     // statistics: show all courses ordered by the average salary of their professor
-    @GetMapping("/stats-courses-avg-salary")
-    public List<AverageSalaryProfessorCoursesDto> getCoursesOrderedByAverageSalary() {
-        return service.getCoursesOrderedByAverageSalary();
+    @GetMapping("/stats-courses-by-avg-prof-salary-desc")
+    public List<AverageSalaryProfessorCoursesDto> getCoursesByAvgProfSalaryDesc() {
+        return service.getCoursesByAvgProfSalaryDesc();
     }
 }

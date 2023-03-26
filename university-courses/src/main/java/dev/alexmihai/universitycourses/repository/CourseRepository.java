@@ -20,5 +20,5 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             "FROM Course c JOIN c.professor p " +
             "GROUP BY c.id " +
             "ORDER BY AVG(p.salary) DESC")
-    List<AverageSalaryProfessorCoursesDto> findCoursesOrderByAverageSalary();
+    List<AverageSalaryProfessorCoursesDto> findCoursesByAvgProfSalaryDesc();
 }

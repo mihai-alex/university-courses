@@ -1,12 +1,10 @@
 package dev.alexmihai.universitycourses.service;
 
-import dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto;
 import dev.alexmihai.universitycourses.dto.ProfessorGetAllDto;
 import dev.alexmihai.universitycourses.dto.ProfessorsByNumStudentsDto;
 import dev.alexmihai.universitycourses.model.Professor;
 import dev.alexmihai.universitycourses.repository.ProfessorRepository;
 import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,8 +63,8 @@ public class ProfessorService {
         return repository.save(existingProfessor);
     }
 
-    public List<ProfessorsByNumStudentsDto> getProfessorsByNumStudents() {
-        List<ProfessorsByNumStudentsDto> professors = repository.findProfessorsByNumStudents();
+    public List<ProfessorsByNumStudentsDto> getProfsByNumStudsDesc() {
+        List<ProfessorsByNumStudentsDto> professors = repository.findProfsByNumStudsDesc();
         return professors;
     }
 }
