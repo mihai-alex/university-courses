@@ -16,9 +16,9 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query("SELECT new dev.alexmihai.universitycourses.dto.AverageSalaryProfessorCoursesDto(" +
-            "c.id, c.title, c.professor.id, AVG(p.salary))" +
-            " FROM Course c JOIN c.professor " +
-            "p GROUP BY c.id" +
-            " ORDER BY AVG(p.salary) DESC")
+            "c.id, c.title, c.professor.id, AVG(p.salary)) " +
+            "FROM Course c JOIN c.professor p " +
+            "GROUP BY c.id " +
+            "ORDER BY AVG(p.salary) DESC")
     List<AverageSalaryProfessorCoursesDto> findCoursesOrderByAverageSalary();
 }

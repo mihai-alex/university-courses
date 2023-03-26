@@ -43,22 +43,22 @@ public class ProfessorController {
     }
 
     // This method is used to get all the professors with a salary greater than the given salary
-    @RequestMapping(value = "/salary/greater/{salary}", method = RequestMethod.GET)
+    @RequestMapping(value = "/salary-greater/{salary}", method = RequestMethod.GET)
     public List<ProfessorGetAllDto> findBySalaryGreaterThan(@PathVariable int salary) {
         return service.findBySalaryGreaterThan(salary);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public Professor updateProfessor(@RequestBody Professor professor) {
         return service.updateProfessor(professor);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteProfessor(@PathVariable int id) {
         return service.deleteProfessor(id);
     }
 
-    @GetMapping("/statisticsNumStuds")
+    @GetMapping("/stats-studs-per-prof")
     public List<ProfessorsByNumStudentsDto> getProfessorsByNumStudentsDto() {
         return service.getProfessorsByNumStudents();
     }

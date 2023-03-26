@@ -42,18 +42,18 @@ public class CourseController {
         return service.getCourseById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public Course updateCourse(@RequestBody Course course) {
         return service.updateCourse(course);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCourse(@PathVariable int id) {
         return service.deleteCourse(id);
     }
 
     // statistics: show all courses ordered by the average salary of their professor
-    @GetMapping("/statistics")
+    @GetMapping("/stats-courses-avg-salary")
     public List<AverageSalaryProfessorCoursesDto> getCoursesOrderedByAverageSalary() {
         return service.getCoursesOrderedByAverageSalary();
     }

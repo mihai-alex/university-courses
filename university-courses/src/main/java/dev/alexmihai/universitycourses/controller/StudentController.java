@@ -1,5 +1,6 @@
 package dev.alexmihai.universitycourses.controller;
 
+import dev.alexmihai.universitycourses.dto.StudentGetAllDto;
 import dev.alexmihai.universitycourses.model.Student;
 import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.service.StudentService;
@@ -34,7 +35,7 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> findAllStudents() {
+    public List<StudentGetAllDto> findAllStudents() {
         return service.getStudents();
     }
 
@@ -43,17 +44,17 @@ public class StudentController {
         return service.getStudentById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public Student updateStudent(@RequestBody Student student) {
         return service.updateStudent(student);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteStudent(@PathVariable int id) {
         return service.deleteStudent(id);
     }
 
-    @DeleteMapping("/delete/{studentId}/courses/{courseId}")
+    @DeleteMapping("/{studentId}/courses/{courseId}")
     public String deleteStudentCourse(@PathVariable int studentId, @PathVariable int courseId) {
         return service.deleteStudentCourse(studentId, courseId);
     }

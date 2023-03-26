@@ -1,10 +1,12 @@
 package dev.alexmihai.universitycourses.service;
 
+import dev.alexmihai.universitycourses.dto.StudentGetAllDto;
 import dev.alexmihai.universitycourses.model.Course;
 import dev.alexmihai.universitycourses.model.Student;
 import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.repository.CourseRepository;
 import dev.alexmihai.universitycourses.repository.StudentRepository;
+import dev.alexmihai.universitycourses.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +49,9 @@ public class StudentService {
         return repository.saveAll(students);
     }
 
-    public List<Student> getStudents() {
-        return repository.findAll();
+    public List<StudentGetAllDto> getStudents() {
+        List<Student> Students = repository.findAll();
+        return ObjectMapperUtils.mapAll(Students, StudentGetAllDto.class);
     }
 
     public Student getStudentById(int id) {
