@@ -1,6 +1,7 @@
 package dev.alexmihai.universitycourses.controller;
 
 import dev.alexmihai.universitycourses.dto.StudentGetAllDto;
+import dev.alexmihai.universitycourses.dto.StudentGetByIdDto;
 import dev.alexmihai.universitycourses.model.Student;
 import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.service.StudentService;
@@ -40,7 +41,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public Student findStudentById(@PathVariable int id) {
+    public StudentGetByIdDto findStudentById(@PathVariable int id) {
         return service.getStudentById(id);
     }
 

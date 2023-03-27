@@ -1,6 +1,7 @@
 package dev.alexmihai.universitycourses.service;
 
 import dev.alexmihai.universitycourses.dto.StudentGetAllDto;
+import dev.alexmihai.universitycourses.dto.StudentGetByIdDto;
 import dev.alexmihai.universitycourses.model.Course;
 import dev.alexmihai.universitycourses.model.Student;
 import dev.alexmihai.universitycourses.model.StudentCourse;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
     @Autowired
-    private StudentRepository repository;
+    private StudentRepository studentRepository;
 
     @Autowired
     private CourseRepository courseRepository;
@@ -42,33 +43,46 @@ public class StudentService {
                     return newStudentCourse;
                 })
                 .collect(Collectors.toList())));
-        return repository.save(newStudent);
+        return studentRepository.save(newStudent);
     }
 
     public List<Student> saveStudents(List<Student> students) {
-        return repository.saveAll(students);
+        return studentRepository.saveAll(students);
     }
 
     public List<StudentGetAllDto> getStudents() {
-        List<Student> Students = repository.findAll();
+        List<Student> Students = studentRepository.findAll();
         return ObjectMapperUtils.mapAll(Students, StudentGetAllDto.class);
     }
 
-    public Student getStudentById(int id) {
-        return repository.findById(id).orElse(null);
+    public StudentGetByIdDto getStudentById(int id) {
+        // return studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student == null) {
+            return null;
+        }
+        return new StudentGetByIdDto(
+                student.getId(),
+                student.getFirstName(),
+                student.getLastName(),
+                student.getEmail(),
+                student.getPhone(),
+                student.getYearOfStudy(),
+                student.getStudentCourses()
+        );
     }
 
     public String deleteStudent(int id) {
-        Student existingStudent = repository.findById(id).orElse(null);
+        Student existingStudent = studentRepository.findById(id).orElse(null);
         if (existingStudent == null) {
             return String.format("Student with id %d does not exist!", id);
         }
-        repository.delete(existingStudent);
+        studentRepository.delete(existingStudent);
         return String.format("Student with id %d was deleted!", id);
     }
 
     public Student updateStudent(Student student) {
-        Student existingStudent = repository.findById(student.getId()).orElse(null);
+        Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
         if (existingStudent == null) {
             return null;
         }
@@ -77,12 +91,12 @@ public class StudentService {
         existingStudent.setEmail(student.getEmail());
         existingStudent.setPhone(student.getPhone());
         existingStudent.setYearOfStudy(student.getYearOfStudy());
-        return repository.save(existingStudent);
+        return studentRepository.save(existingStudent);
     }
 
     // attempt below:
     public Student addStudentCourse(int studentId, StudentCourse studentCourse) {
-        Student existingStudent = repository.findById(studentId).orElse(null);
+        Student existingStudent = studentRepository.findById(studentId).orElse(null);
         if (existingStudent == null) {
             return null;
         }
@@ -96,11 +110,11 @@ public class StudentService {
         newStudentCourse.setGrade(studentCourse.getGrade());
         newStudentCourse.setFeedback(studentCourse.getFeedback());
         existingStudent.getStudentCourses().add(newStudentCourse);
-        return repository.save(existingStudent);
+        return studentRepository.save(existingStudent);
     }
 
     public String deleteStudentCourse(int studentId, int courseId) {
-        Student existingStudent = repository.findById(studentId).orElse(null);
+        Student existingStudent = studentRepository.findById(studentId).orElse(null);
         if (existingStudent == null) {
             return String.format("Student with id %d does not exist!", studentId);
         }
@@ -117,7 +131,7 @@ public class StudentService {
             return String.format("Student with id %d is not enrolled in course with id %d!", studentId, courseId);
         }
         existingStudent.getStudentCourses().remove(existingStudentCourse);
-        repository.save(existingStudent);
+        studentRepository.save(existingStudent);
         return String.format("Student with id %d was unenrolled from course with id %d!", studentId, courseId);
     }
 }

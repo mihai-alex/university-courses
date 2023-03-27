@@ -4,6 +4,8 @@ import dev.alexmihai.universitycourses.dto.CourseByAvgProfSalaryDto;
 import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.model.Course;
+import dev.alexmihai.universitycourses.model.Student;
+import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,12 @@ public class CourseController {
         return service.saveCourses(courses);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/{courseId}/students")
+    public Course addCourseStudent(@PathVariable int courseId, @RequestBody StudentCourse studentCourses) {
+        return service.addCourseStudent(courseId, studentCourses);
+    }
+
     @GetMapping
     public List<CourseGetAllDto> findAllCourses() {
         return service.getCourses();
@@ -56,5 +64,10 @@ public class CourseController {
     @GetMapping("/stats-courses-by-avg-prof-salary-desc")
     public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
         return service.getCoursesByAvgProfSalaryDesc();
+    }
+
+    @DeleteMapping("/{courseId}/students/{studentId}")
+    public String deleteCourseStudent(@PathVariable int courseId, @PathVariable int studentId) {
+        return service.deleteCourseStudent(courseId, studentId);
     }
 }

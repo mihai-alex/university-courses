@@ -25,11 +25,13 @@ public class StudentCourse implements Serializable {
 
     @ManyToOne
     @MapsId("studentId")
-    @JsonIgnore
+    // @JsonIgnore  // avoid infinite recursion
+    @JsonBackReference(value = "student-in-StudentCourse")  // to avoid infinite recursion!!! (see Student.java)
     private Student student;  // many-to-many relationship
 
     @ManyToOne
     @MapsId("courseId")
+    @JsonBackReference(value = "course-in-StudentCourse")  // to avoid infinite recursion!!! (see Course.java)
     private Course course;  // many-to-many relationship
 
     // additional fields
