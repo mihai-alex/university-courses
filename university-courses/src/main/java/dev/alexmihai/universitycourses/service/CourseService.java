@@ -76,8 +76,11 @@ public class CourseService {
         return String.format("Course with id %d was deleted!", id);
     }
 
-    public Course updateCourse(Course course) {
-        Course existingCourse = courseRepository.findById(course.getId()).orElse(null);
+    public Course updateCourse(int id, Course course) {
+        Course existingCourse = courseRepository.findById(id).orElse(null);
+        if (existingCourse == null) {
+            return null;
+        }
         existingCourse.setNumberOfCredits(course.getNumberOfCredits());
         existingCourse.setTitle(course.getTitle());
         existingCourse.setDescription(course.getDescription());

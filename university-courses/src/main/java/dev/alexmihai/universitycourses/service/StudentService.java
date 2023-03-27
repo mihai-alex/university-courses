@@ -81,8 +81,8 @@ public class StudentService {
         return String.format("Student with id %d was deleted!", id);
     }
 
-    public Student updateStudent(Student student) {
-        Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
+    public Student updateStudent(int id, Student student) {
+        Student existingStudent = studentRepository.findById(id).orElse(null);
         if (existingStudent == null) {
             return null;
         }

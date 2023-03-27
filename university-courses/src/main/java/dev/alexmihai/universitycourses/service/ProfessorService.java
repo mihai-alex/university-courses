@@ -46,8 +46,11 @@ public class ProfessorService {
         return String.format("Professor with id %d was deleted!", id);
     }
 
-    public Professor updateProfessor(Professor professor) {
-        Professor existingProfessor = repository.findById(professor.getId()).orElse(null);
+    public Professor updateProfessor(int id, Professor professor) {
+        Professor existingProfessor = repository.findById(id).orElse(null);
+        if (existingProfessor == null) {
+            return null;
+        }
         existingProfessor.setFirstName(professor.getFirstName());
         existingProfessor.setLastName(professor.getLastName());
         existingProfessor.setEmail(professor.getEmail());

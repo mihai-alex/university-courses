@@ -46,9 +46,9 @@ public class CourseController {
         return service.getCourseById(id);
     }
 
-    @PutMapping
-    public Course updateCourse(@RequestBody Course course) {
-        return service.updateCourse(course);
+    @PutMapping("/{id}")
+    public Course updateCourse(@PathVariable int id, @RequestBody Course course) {
+        return service.updateCourse(id, course);
     }
 
     @DeleteMapping("/{id}")

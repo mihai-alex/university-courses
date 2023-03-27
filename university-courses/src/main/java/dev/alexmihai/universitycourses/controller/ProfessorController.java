@@ -43,9 +43,9 @@ public class ProfessorController {
         return service.findBySalaryGreaterThan(salary);
     }
 
-    @PutMapping
-    public Professor updateProfessor(@RequestBody Professor professor) {
-        return service.updateProfessor(professor);
+    @PutMapping("/{id}")
+    public Professor updateProfessor(@PathVariable int id, @RequestBody Professor professor) {
+        return service.updateProfessor(id, professor);
     }
 
     @DeleteMapping("/{id}")
