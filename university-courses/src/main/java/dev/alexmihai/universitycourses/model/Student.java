@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 
-// JPA annotations
 @Entity
 @Table(name = "Students")
 public class Student implements Serializable {
@@ -31,7 +29,7 @@ public class Student implements Serializable {
     private String phone;
     private int yearOfStudy;
 
-    @JsonManagedReference  // to avoid infinite recursion!!! see StudentCourse.java
+    @JsonManagedReference  // to avoid infinite recursion (see StudentCourse.java)
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore  // avoid infinite recursion
     private List<StudentCourse> studentCourses = new ArrayList<>();  // many-to-many relationship

@@ -18,20 +18,14 @@ import java.util.List;
 
 @Service
 public class CourseService {
-    @Autowired  // This annotation is used to inject the dependency - the CourseRepository object
+    @Autowired
     private CourseRepository courseRepository;
 
     @Autowired
     private StudentRepository studentRepository;
 
-    /*
-        This method is used to save a course in the database.
-        The method is automatically implemented by Spring.
-        The argument is the course to be saved.
-        The return value is the saved course.
-     */
     public Course saveCourse(Course course) {
-        return courseRepository.save(course);  // This method is automatically implemented by Spring
+        return courseRepository.save(course);
     }
 
     public List<Course> saveCourses(List<Course> courses) {

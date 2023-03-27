@@ -1,8 +1,6 @@
 package dev.alexmihai.universitycourses.model;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +15,7 @@ import java.io.Serializable;
 
 @Embeddable
 public class StudentCourseId implements Serializable {
-    // composite primary key
+    // composite primary key:
     private int studentId;
     private int courseId;
 }

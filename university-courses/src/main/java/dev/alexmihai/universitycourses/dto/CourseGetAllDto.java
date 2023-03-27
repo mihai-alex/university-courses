@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
-@Data  // Lombok - generates getters, setters, toString, equals, hashCode
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

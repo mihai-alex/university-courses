@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data  // Lombok - generates getters, setters, toString, equals, hashCode
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

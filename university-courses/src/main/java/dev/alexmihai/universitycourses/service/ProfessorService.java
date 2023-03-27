@@ -12,17 +12,11 @@ import java.util.List;
 
 @Service
 public class ProfessorService {
-    @Autowired  // This annotation is used to inject the dependency - the CourseRepository object
+    @Autowired
     private ProfessorRepository repository;
 
-    /*
-        This method is used to save a course in the database.
-        The method is automatically implemented by Spring.
-        The argument is the course to be saved.
-        The return value is the saved course.
-     */
     public Professor saveProfessor(Professor professor) {
-        return repository.save(professor);  // This method is automatically implemented by Spring
+        return repository.save(professor);
     }
 
     public List<Professor> saveProfessors(List<Professor> professors) {
@@ -38,7 +32,6 @@ public class ProfessorService {
         return repository.findById(id).orElse(null);
     }
 
-    // This method is used to get all the professors with a salary greater than the given salary
     public List<ProfessorGetAllDto> findBySalaryGreaterThan(int salary) {
         List<Professor> professors = repository.findBySalaryGreaterThan(salary);
         return ObjectMapperUtils.mapAll(professors, ProfessorGetAllDto.class);

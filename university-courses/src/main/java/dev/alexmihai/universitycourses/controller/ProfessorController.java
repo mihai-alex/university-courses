@@ -18,14 +18,12 @@ public class ProfessorController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    // The @RequestBody annotation is used to get the JSON data from the request body
     public Professor addProfessor(@RequestBody Professor professor) {
         return service.saveProfessor(professor);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/batch")
-    // The @RequestBody annotation is used to get the JSON data from the request body
     public List<Professor> addProfessors(@RequestBody List<Professor> professors) {
         return service.saveProfessors(professors);
     }
@@ -36,12 +34,10 @@ public class ProfessorController {
     }
 
     @GetMapping("/{id}")
-    // The @PathVariable annotation is used to get the id from the URL
     public Professor findProfessorById(@PathVariable int id) {
         return service.getProfessorById(id);
     }
 
-    // This method is used to get all the professors with a salary greater than the given salary
     @RequestMapping(value = "/salary-greater/{salary}", method = RequestMethod.GET)
     public List<ProfessorGetAllDto> findBySalaryGreaterThan(@PathVariable int salary) {
         return service.findBySalaryGreaterThan(salary);

@@ -1,8 +1,6 @@
 package dev.alexmihai.universitycourses.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +14,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ToString
 
-// JPA annotations
 @Entity
 @Table(name = "StudentsCourses")
 public class StudentCourse implements Serializable {
@@ -25,16 +22,15 @@ public class StudentCourse implements Serializable {
 
     @ManyToOne
     @MapsId("studentId")
-    // @JsonIgnore  // avoid infinite recursion
-    @JsonBackReference(value = "student-in-StudentCourse")  // to avoid infinite recursion!!! (see Student.java)
+    @JsonBackReference(value = "student-in-StudentCourse")  // to avoid infinite recursion (see Student.java)
     private Student student;  // many-to-many relationship
 
     @ManyToOne
     @MapsId("courseId")
-    @JsonBackReference(value = "course-in-StudentCourse")  // to avoid infinite recursion!!! (see Course.java)
+    @JsonBackReference(value = "course-in-StudentCourse")  // to avoid infinite recursion (see Course.java)
     private Course course;  // many-to-many relationship
 
-    // additional fields
+    // additional fields for the many-to-many relationship:
     private int grade;
     private String feedback;
 }

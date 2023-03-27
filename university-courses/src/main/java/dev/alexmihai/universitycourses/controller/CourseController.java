@@ -4,7 +4,6 @@ import dev.alexmihai.universitycourses.dto.CourseByAvgProfSalaryDto;
 import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
 import dev.alexmihai.universitycourses.model.Course;
-import dev.alexmihai.universitycourses.model.Student;
 import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,12 @@ public class CourseController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    // The @RequestBody annotation is used to get the JSON data from the request body
     public Course addCourse(@RequestBody Course course) {
         return service.saveCourse(course);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/batch")
-    // The @RequestBody annotation is used to get the JSON data from the request body
     public List<Course> addCourses(@RequestBody List<Course> courses) {
         return service.saveCourses(courses);
     }
@@ -45,7 +42,6 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    // The @PathVariable annotation is used to get the id from the URL
     public CourseGetByIdDto findCourseById(@PathVariable int id) {
         return service.getCourseById(id);
     }
@@ -59,8 +55,7 @@ public class CourseController {
     public String deleteCourse(@PathVariable int id) {
         return service.deleteCourse(id);
     }
-
-    // statistics: show all courses ordered by the average salary of their professor
+    
     @GetMapping("/stats-courses-by-avg-prof-salary-desc")
     public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
         return service.getCoursesByAvgProfSalaryDesc();
