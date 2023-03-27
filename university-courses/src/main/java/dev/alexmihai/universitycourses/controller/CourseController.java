@@ -55,7 +55,7 @@ public class CourseController {
     public String deleteCourse(@PathVariable int id) {
         return service.deleteCourse(id);
     }
-    
+
     @GetMapping("/stats-courses-by-avg-prof-salary-desc")
     public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
         return service.getCoursesByAvgProfSalaryDesc();
