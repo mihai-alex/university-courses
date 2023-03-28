@@ -25,6 +25,9 @@ public class ProfessorService {
 
     public List<ProfessorGetAllDto> getProfessors() {
         List<Professor> professors = repository.findAll();
+        if (professors.isEmpty()) {
+            return null;
+        }
         return ObjectMapperUtils.mapAll(professors, ProfessorGetAllDto.class);
     }
 

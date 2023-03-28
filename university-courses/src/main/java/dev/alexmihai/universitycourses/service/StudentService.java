@@ -51,8 +51,11 @@ public class StudentService {
     }
 
     public List<StudentGetAllDto> getStudents() {
-        List<Student> Students = studentRepository.findAll();
-        return ObjectMapperUtils.mapAll(Students, StudentGetAllDto.class);
+        List<Student> students = studentRepository.findAll();
+        if (students.isEmpty()) {
+            return null;
+        }
+        return ObjectMapperUtils.mapAll(students, StudentGetAllDto.class);
     }
 
     public StudentGetByIdDto getStudentById(int id) {

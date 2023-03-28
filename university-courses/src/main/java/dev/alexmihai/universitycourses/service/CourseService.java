@@ -34,6 +34,9 @@ public class CourseService {
 
     public List<CourseGetAllDto> getCourses() {
         List<Course> courses = courseRepository.findAll();
+        if (courses.isEmpty()) {
+            return null;
+        }
         List<CourseGetAllDto> coursesDto = new ArrayList<>();
         for (Course course : courses) {
             CourseGetAllDto courseDto = new CourseGetAllDto(
