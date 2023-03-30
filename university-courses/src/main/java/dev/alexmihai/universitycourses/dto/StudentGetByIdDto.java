@@ -20,5 +20,5 @@ public class StudentGetByIdDto {
     private String email;
     private String phone;
     private int yearOfStudy;
-    private List<StudentCourse> studentCourses;
+    private List<StudentCourse> studentCourses = new ArrayList<>();
 }

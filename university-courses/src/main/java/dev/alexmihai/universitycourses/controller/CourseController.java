@@ -3,11 +3,15 @@ package dev.alexmihai.universitycourses.controller;
 import dev.alexmihai.universitycourses.dto.CourseByAvgProfSalaryDto;
 import dev.alexmihai.universitycourses.dto.CourseGetAllDto;
 import dev.alexmihai.universitycourses.dto.CourseGetByIdDto;
+import dev.alexmihai.universitycourses.dto.CourseRequest;
+import dev.alexmihai.universitycourses.exception.EntityNotFoundException;
 import dev.alexmihai.universitycourses.model.Course;
 import dev.alexmihai.universitycourses.model.StudentCourse;
 import dev.alexmihai.universitycourses.service.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,51 +22,45 @@ public class CourseController {
     @Autowired
     private CourseService service;
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Course addCourse(@RequestBody Course course) {
-        return service.saveCourse(course);
+    public ResponseEntity<Course> addCourse(@RequestBody @Valid CourseRequest courseRequest) throws EntityNotFoundException {
+        return new ResponseEntity<>(service.saveCourse(courseRequest), HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/batch")
-    public List<Course> addCourses(@RequestBody List<Course> courses) {
-        return service.saveCourses(courses);
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{courseId}/students")
-    public Course addCourseStudent(@PathVariable int courseId, @RequestBody StudentCourse studentCourses) {
-        return service.addCourseStudent(courseId, studentCourses);
+    public ResponseEntity<Course> addCourseStudent(@PathVariable int courseId, @RequestBody StudentCourse studentCourses) throws EntityNotFoundException {
+        return new ResponseEntity<>(service.addCourseStudent(courseId, studentCourses), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<CourseGetAllDto> findAllCourses() {
-        return service.getCourses();
+    public ResponseEntity<List<CourseGetAllDto>> findAllCourses() throws EntityNotFoundException {
+        return ResponseEntity.ok(service.getCourses());
     }
 
     @GetMapping("/{id}")
-    public CourseGetByIdDto findCourseById(@PathVariable int id) {
-        return service.getCourseById(id);
+    public ResponseEntity<CourseGetByIdDto> findCourseById(@PathVariable int id) throws EntityNotFoundException {
+        return ResponseEntity.ok(service.getCourseById(id));
     }
 
     @PutMapping("/{id}")
-    public Course updateCourse(@PathVariable int id, @RequestBody Course course) {
-        return service.updateCourse(id, course);
+    public ResponseEntity<Course> updateCourse(@PathVariable int id, @RequestBody @Valid CourseRequest courseRequest) throws EntityNotFoundException {
+        return ResponseEntity.ok(service.updateCourse(id, courseRequest));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCourse(@PathVariable int id) {
-        return service.deleteCourse(id);
+    public ResponseEntity<Void> deleteCourse(@PathVariable int id) throws EntityNotFoundException {
+        service.deleteCourse(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/stats-courses-by-avg-prof-salary-desc")
-    public List<CourseByAvgProfSalaryDto> getCoursesByAvgProfSalaryDesc() {
-        return service.getCoursesByAvgProfSalaryDesc();
+    public ResponseEntity<List<CourseByAvgProfSalaryDto>> getCoursesByAvgProfSalaryDesc() throws EntityNotFoundException {
+        return ResponseEntity.ok(service.getCoursesByAvgProfSalaryDesc());
     }
 
     @DeleteMapping("/{courseId}/students/{studentId}")
-    public String deleteCourseStudent(@PathVariable int courseId, @PathVariable int studentId) {
-        return service.deleteCourseStudent(courseId, studentId);
+    public ResponseEntity<Void> deleteCourseStudent(@PathVariable int courseId, @PathVariable int studentId) throws EntityNotFoundException {
+        service.deleteCourseStudent(courseId, studentId);
+        return ResponseEntity.noContent().build();
     }
 }

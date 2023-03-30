@@ -36,6 +36,6 @@ public class Course implements Serializable {
 
     @JsonManagedReference  // to avoid infinite recursion (see StudentCourse.java)
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonIgnore  // avoid infinite recursion
     private List<StudentCourse> courseStudents = new ArrayList<>();  // many-to-many relationship
 }
