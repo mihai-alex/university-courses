@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")  // allow requests from any origin (for development purposes) - this is not recommended for production
 @RestController
 @RequestMapping("/professors")
 public class ProfessorController {
