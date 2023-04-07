@@ -18,7 +18,14 @@ const ProfessorViewAll = () => {
   }, []);
 
   if (professors.length === 0) {
-    return <div>No courses</div>;
+    return (
+      <div className="empty-list-message">
+        <span>No professors to view</span>
+        <Link to="add-professor" className="btn btn-primary mb-2">
+          Add professor
+        </Link>
+      </div>
+    );
   }
 
   return (
