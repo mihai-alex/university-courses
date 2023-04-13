@@ -17,7 +17,7 @@ import java.util.List;
 
 @CrossOrigin("*")  // allow requests from any origin (for development purposes) - this is not recommended for production
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 public class StudentController {
     @Autowired
     private StudentService service;
