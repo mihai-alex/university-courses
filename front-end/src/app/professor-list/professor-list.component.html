@@ -1,0 +1,21 @@
+<h2>Professors List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let professor of professors">
+      <td>{{ professor.firstName }}</td>
+      <td>{{ professor.lastName }}</td>
+      <td>{{ professor.email }}</td>
+      <td>{{ professor.phone }}</td>
+      <td>{{ professor.salary }}</td>
+    </tr>
+  </tbody>
+</table>
