@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Professor } from '../professor';
+import { ProfessorService } from '../professor.service';
 
 @Component({
   selector: 'app-professor-list',
@@ -9,24 +10,15 @@ import { Professor } from '../professor';
 export class ProfessorListComponent {
   professors!: Professor[];
 
+  constructor(private professorService: ProfessorService) {}
+
   ngOnInit(): void {
-    this.professors = [
-      {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'abc@gmail.com',
-        phone: '555-555-5555',
-        salary: 100000,
-      },
-      {
-        id: 2,
-        firstName: 'Jane',
-        lastName: 'Doe',
-        email: 'qwr@yahoo.com',
-        phone: '555-555-5555',
-        salary: 100000,
-      },
-    ];
+    this.getProfessors();
+  }
+
+  private getProfessors() {
+    this.professorService.getProfessorsList().subscribe((data) => {
+      this.professors = data;
+    });
   }
 }
