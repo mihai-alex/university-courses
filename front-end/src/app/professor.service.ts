@@ -14,4 +14,8 @@ export class ProfessorService {
   getProfessorsList(): Observable<Professor[]> {
     return this.httpClient.get<Professor[]>(`${this.baseURL}`);
   }
+
+  createProfessor(professor: Professor): Observable<Object> {
+    return this.httpClient.post(`${this.baseURL}`, professor);
+  }
 }
