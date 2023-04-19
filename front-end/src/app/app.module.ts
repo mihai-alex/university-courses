@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ProfessorListComponent } from './professor-list/professor-list.component';
 import { CreateProfessorComponent } from './create-professor/create-professor.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateProfessorComponent } from './update-professor/update-professor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfessorListComponent,
     CreateProfessorComponent,
+    UpdateProfessorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

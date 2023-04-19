@@ -18,4 +18,12 @@ export class ProfessorService {
   createProfessor(professor: Professor): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, professor);
   }
+
+  getProfessorById(id: number): Observable<Professor> {
+    return this.httpClient.get<Professor>(`${this.baseURL}/${id}`);
+  }
+
+  updateProfessor(id: number, professor: Professor): Observable<Object> {
+    return this.httpClient.put(`${this.baseURL}/${id}`, professor);
+  }
 }

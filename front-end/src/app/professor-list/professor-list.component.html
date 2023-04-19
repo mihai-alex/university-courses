@@ -7,6 +7,7 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Salary</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,11 @@
       <td>{{ professor.email }}</td>
       <td>{{ professor.phone }}</td>
       <td>{{ professor.salary }}</td>
+      <td>
+        <button (click)="updateProfessor(professor.id)" class="btn btn-info">
+          Update
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
