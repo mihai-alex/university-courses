@@ -26,4 +26,8 @@ export class ProfessorService {
   updateProfessor(id: number, professor: Professor): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, professor);
   }
+
+  deleteProfessor(id: number): Observable<Object> {
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
 }

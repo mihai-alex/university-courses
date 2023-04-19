@@ -29,4 +29,18 @@ export class ProfessorListComponent {
   updateProfessor(id: number) {
     this.router.navigate(['update-professor', id]);
   }
+
+  deleteProfessor(id: number) {
+    this.professorService.deleteProfessor(id).subscribe(
+      (data) => {
+        console.log(data);
+        this.getProfessors();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  professorDetails(id: number) {
+    this.router.navigate(['professor-details', id]);
+  }
 }

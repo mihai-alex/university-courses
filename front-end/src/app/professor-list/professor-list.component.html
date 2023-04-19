@@ -21,6 +21,20 @@
         <button (click)="updateProfessor(professor.id)" class="btn btn-info">
           Update
         </button>
+        <button
+          (click)="deleteProfessor(professor.id)"
+          class="btn btn-danger"
+          style="margin-left: 1rem"
+        >
+          Delete
+        </button>
+        <button
+          (click)="professorDetails(professor.id)"
+          class="btn btn-info"
+          style="margin-left: 1rem"
+        >
+          View
+        </button>
       </td>
     </tr>
   </tbody>

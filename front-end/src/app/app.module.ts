@@ -7,6 +7,7 @@ import { ProfessorListComponent } from './professor-list/professor-list.componen
 import { CreateProfessorComponent } from './create-professor/create-professor.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProfessorComponent } from './update-professor/update-professor.component';
+import { ProfessorDetailsComponent } from './professor-details/professor-details.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { UpdateProfessorComponent } from './update-professor/update-professor.co
     ProfessorListComponent,
     CreateProfessorComponent,
     UpdateProfessorComponent,
+    ProfessorDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
