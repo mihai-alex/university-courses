@@ -1,4 +1,5 @@
 <h2>Professors List</h2>
+<button (click)="createProfessor()" class="btn btn-light">Add Professor</button>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,7 +19,7 @@
       <td>{{ professor.phone }}</td>
       <td>{{ professor.salary }}</td>
       <td>
-        <button (click)="updateProfessor(professor.id)" class="btn btn-info">
+        <button (click)="updateProfessor(professor.id)" class="btn btn-primary">
           Update
         </button>
         <button

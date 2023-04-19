@@ -26,6 +26,10 @@ export class ProfessorListComponent {
     });
   }
 
+  createProfessor() {
+    this.router.navigate(['create-professor']);
+  }
+
   updateProfessor(id: number) {
     this.router.navigate(['update-professor', id]);
   }
