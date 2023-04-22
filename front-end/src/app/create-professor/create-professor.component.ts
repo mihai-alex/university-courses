@@ -35,4 +35,8 @@ export class CreateProfessorComponent {
     console.log(this.professor);
     this.saveProfessor();
   }
+
+  onCancel() {
+    this.goToProfessorList();
+  }
 }
