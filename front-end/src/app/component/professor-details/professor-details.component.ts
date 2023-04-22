@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Professor } from '../professor';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfessorService } from '../professor.service';
+import { Professor } from 'src/app/model/professor';
+import { ProfessorService } from 'src/app/service/professor.service';
 
 @Component({
   selector: 'app-professor-details',

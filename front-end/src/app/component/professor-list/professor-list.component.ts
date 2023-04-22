@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Professor } from '../professor';
-import { ProfessorService } from '../professor.service';
 import { Router } from '@angular/router';
+import { Professor } from 'src/app/model/professor';
+import { ProfessorService } from 'src/app/service/professor.service';
 
 @Component({
   selector: 'app-professor-list',
