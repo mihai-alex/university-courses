@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
 import { ProfessorService } from 'src/app/services/professor.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-professor-update',
@@ -15,7 +16,8 @@ export class ProfessorUpdateComponent implements OnInit {
   constructor(
     private professorService: ProfessorService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class ProfessorUpdateComponent implements OnInit {
     );
   }
 
-  onCancel() {
-    this.goToProfessorList();
+  goBack(): void {
+    this.location.back();
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
 import { ProfessorService } from 'src/app/services/professor.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-professor-details',
@@ -15,7 +16,8 @@ export class ProfessorDetailsComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private professorService: ProfessorService
+    private professorService: ProfessorService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -27,11 +29,11 @@ export class ProfessorDetailsComponent {
     });
   }
 
-  goToProfessorList() {
+  goToProfessorList(): void {
     this.router.navigate(['/professors']);
   }
 
-  onCancel() {
-    this.goToProfessorList();
+  goBack(): void {
+    this.location.back();
   }
 }

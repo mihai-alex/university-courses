@@ -25,4 +25,8 @@ export class ProfessorFilterByNumStudsComponent {
       this.professors = data;
     });
   }
+
+  professorDetails(id: number) {
+    this.router.navigate(['professor-details', id]);
+  }
 }

@@ -5,6 +5,7 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Number of students</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,11 @@
       <td>{{ professor.profFirstName }}</td>
       <td>{{ professor.profLastName }}</td>
       <td>{{ professor.numStudents }}</td>
+      <td>
+        <button (click)="professorDetails(professor.id)" class="btn btn-info">
+          View
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
