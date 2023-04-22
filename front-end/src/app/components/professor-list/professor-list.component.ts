@@ -26,6 +26,15 @@ export class ProfessorListComponent {
     });
   }
 
+  sortProfessorsByFirstLastName() {
+    this.professors.sort((a, b) => {
+      if (a.firstName === b.firstName) {
+        return a.lastName.localeCompare(b.lastName);
+      }
+      return a.firstName.localeCompare(b.firstName);
+    });
+  }
+
   createProfessor() {
     this.router.navigate(['professor-create']);
   }
