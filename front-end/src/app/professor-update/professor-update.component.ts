@@ -4,11 +4,11 @@ import { ProfessorService } from '../professor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-update-professor',
-  templateUrl: './update-professor.component.html',
-  styleUrls: ['./update-professor.component.css'],
+  selector: 'app-professor-update',
+  templateUrl: './professor-update.component.html',
+  styleUrls: ['./professor-update.component.css'],
 })
-export class UpdateProfessorComponent implements OnInit {
+export class ProfessorUpdateComponent implements OnInit {
   id!: number;
   professor: Professor = new Professor();
 

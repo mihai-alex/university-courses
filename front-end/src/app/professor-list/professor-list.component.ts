@@ -27,11 +27,11 @@ export class ProfessorListComponent {
   }
 
   createProfessor() {
-    this.router.navigate(['create-professor']);
+    this.router.navigate(['professor-create']);
   }
 
   updateProfessor(id: number) {
-    this.router.navigate(['update-professor', id]);
+    this.router.navigate(['professor-update', id]);
   }
 
   deleteProfessor(id: number) {

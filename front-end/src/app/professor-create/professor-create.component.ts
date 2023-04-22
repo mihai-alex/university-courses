@@ -4,11 +4,11 @@ import { ProfessorService } from '../professor.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-professor',
-  templateUrl: './create-professor.component.html',
-  styleUrls: ['./create-professor.component.css'],
+  selector: 'app-professor-create',
+  templateUrl: './professor-create.component.html',
+  styleUrls: ['./professor-create.component.css'],
 })
-export class CreateProfessorComponent {
+export class ProfessorCreateComponent {
   professor: Professor = new Professor();
 
   constructor(
