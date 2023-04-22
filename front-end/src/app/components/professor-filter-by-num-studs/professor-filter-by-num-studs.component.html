@@ -1,0 +1,17 @@
+<h2>Professors Filtered by Number of Students in Descending Order</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Number of students</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let professor of professors">
+      <td>{{ professor.profFirstName }}</td>
+      <td>{{ professor.profLastName }}</td>
+      <td>{{ professor.numStudents }}</td>
+    </tr>
+  </tbody>
+</table>

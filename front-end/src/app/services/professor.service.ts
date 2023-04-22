@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Professor } from '../models/professor';
+import { ProfessorByNumStudsDto } from '../dto/professor-by-num-studs-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,12 @@ export class ProfessorService {
 
   getProfessorsList(): Observable<Professor[]> {
     return this.httpClient.get<Professor[]>(`${this.baseURL}`);
+  }
+
+  getProfessorsByNumStuds(): Observable<ProfessorByNumStudsDto[]> {
+    return this.httpClient.get<ProfessorByNumStudsDto[]>(
+      `${this.baseURL}/stats-profs-by-num-studs-desc`
+    );
   }
 
   createProfessor(professor: Professor): Observable<Object> {
