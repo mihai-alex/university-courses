@@ -42,4 +42,8 @@ export class UpdateProfessorComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
+  onCancel() {
+    this.goToProfessorList();
+  }
 }

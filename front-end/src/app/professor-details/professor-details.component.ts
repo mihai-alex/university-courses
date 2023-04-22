@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Professor } from '../professor';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfessorService } from '../professor.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class ProfessorDetailsComponent {
   professor!: Professor;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private professorService: ProfessorService
   ) {}
@@ -24,5 +25,13 @@ export class ProfessorDetailsComponent {
     this.professorService.getProfessorById(this.id).subscribe((data) => {
       this.professor = data;
     });
+  }
+
+  goToProfessorList() {
+    this.router.navigate(['/professors']);
+  }
+
+  onCancel() {
+    this.goToProfessorList();
   }
 }

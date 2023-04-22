@@ -1,5 +1,5 @@
 <h3>View Professor Details</h3>
-<div>
+<div class="container">
   <div>
     <label><b>First Name: </b></label> {{ professor.firstName }}
   </div>
@@ -15,4 +15,7 @@
   <div>
     <label><b>Salary: </b></label> {{ professor.salary }}
   </div>
+  <button class="btn btn-secondary" type="button" (click)="onCancel()">
+    Cancel
+  </button>
 </div>
