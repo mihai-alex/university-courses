@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfessorCreateComponent } from './component/professor-create/professor-create.component';
-import { ProfessorListComponent } from './component/professor-list/professor-list.component';
-import { ProfessorUpdateComponent } from './component/professor-update/professor-update.component';
-import { ProfessorDetailsComponent } from './component/professor-details/professor-details.component';
+import { ProfessorCreateComponent } from './components/professor-create/professor-create.component';
+import { ProfessorListComponent } from './components/professor-list/professor-list.component';
+import { ProfessorUpdateComponent } from './components/professor-update/professor-update.component';
+import { ProfessorDetailsComponent } from './components/professor-details/professor-details.component';
 
 const routes: Routes = [
   { path: 'professors', component: ProfessorListComponent },
